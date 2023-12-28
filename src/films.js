@@ -29,42 +29,18 @@ function orderAlphabetically(array) {
   .map (film => film.title)
   .sort((filmOne, filmTwo) => compareTitles(filmOne, filmTwo))
   .slice(0,20);
-
-  function compareTitles(filmOne, filmTwo) {
-    const titleOne = filmOne.toUpperCase();
-    const titleTwo = filmTwo.toUpperCase();
-
-    if (titleOne < titleTwo) {
-      return -1;
-    }
-    if (titleOne > titleTwo) {
-      return 1;
-    }
-  
-    return 0;
-
-  }
 }
 
 // Exercise 5: Order by year, ascending
 function orderByYear(array) {
-
-  array.sort(film => compareYears(filmOne.year, filmTwo.year))
-  
-
-
-  function compareYears(filmOneYear, filmTwoYear) {
-
-    if (filmOneYear < filmTwoYear) {
-      return -1;
+  let films = [...array];
+  return films.sort((filmOne, filmTwo) => {
+    const yearsComparison = compareYears(filmOne.year, filmTwo.year);
+    if (yearsComparison !== 0) {
+      return yearsComparison;
     }
-    if (filmOneYear > filmTwoYear) {
-      return 1;
-    }
-  
-    return 0;
-
-  }
+    return compareTitles(filmOne.title, filmTwo.title);
+  });
 }
 
 // Exercise 6: Calculate the average of the movies in a category
@@ -97,4 +73,29 @@ if (typeof module !== 'undefined') {
     hoursToMinutes,
     bestFilmOfYear,
   };
+}
+
+function compareTitles(filmOne, filmTwo) {
+  const titleOne = filmOne.toUpperCase();
+  const titleTwo = filmTwo.toUpperCase();
+
+  if (titleOne < titleTwo) {
+    return -1;
+  }
+  if (titleOne > titleTwo) {
+    return 1;
+  }
+
+  return 0;
+}
+
+function compareYears(yearOne, yearTwo) {
+  if (yearOne < yearTwo) {
+    return -1;
+  }
+  if (yearOne > yearTwo) {
+    return 1;
+  }
+
+  return 0;
 }
