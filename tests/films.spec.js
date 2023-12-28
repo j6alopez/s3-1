@@ -1,3 +1,4 @@
+const { type } = require('os');
 const movies = require('../src/data');
 const {
   getAllDirectors,
@@ -293,9 +294,45 @@ describe('Function "orderByYear"', () => {
 // Exercise 6
 // YOUR CODE HERE. Test moviesAverageByCategory()
 describe('Function "moviesAverageByCategory"', () => {
-  it('ADD YOUR CODE IN films.spec.js file', () => {
-    expect(typeof hoursToMinutes).toBe('coffee');
+
+  it('should be declared', () => {
+    expect(typeof moviesAverageByCategory).toBe('function');
   });
+
+  it('should return a number', () => {
+    expect(typeof moviesAverageByCategory(movies, 'Horror')).toBe('number');
+  });
+
+  it('should return the average of only mystery', () => {
+    const testExercise6 = [
+      {
+        title: 'The Shawshank Redemption',
+        year: 1994,
+        director: 'Frank Darabont',
+        duration: '2h 22min',
+        genre: ['Mystery', 'Drama'],
+        score: 9.4
+      },
+      {
+        title: 'The Godfather',
+        year: 1972,
+        director: 'Francis Ford Coppola',
+        duration: '2h 55min',
+        genre: ['Mystery', 'Drama'],
+        score: 1.2
+      },
+      {
+        title: 'The Test',
+        year: 1972,
+        director: 'Test',
+        duration: '2h 55min',
+        genre: ['Adventures', 'Drama'],
+        score: 9.2
+      }];
+
+    expect(moviesAverageByCategory(testExercise6,'Mystery')).toBe(5.3);
+  })
+
 });
 
 // Exercise 7
